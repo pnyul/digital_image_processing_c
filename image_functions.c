@@ -10,6 +10,7 @@
 #define MAX_INTENSITY 255
 #define SIGMA_MIN 0.5
 #define SIGMA_MAX 3.0
+#define FRAME_SIZE_RATIO 10
 
 int compare_double_values(double a, double b) {
     return fabs(a - b) < EPS ? 0 : (a < b ? -1 : 1);
@@ -58,6 +59,12 @@ void add_frame(BMPImage *image, int size, Pixel *pixel) {
 
     if (image == NULL)
         return;
+
+    if (size <= 0 || image->infoHeader.height / FRAME_SIZE_RATIO < size || image->infoHeader.width / FRAME_SIZE_RATIO < size) {
+        printf("The given size value is not correct.\n");
+        printf("The image height is %dp and the width is %dp.\n", image->infoHeader.height, image->infoHeader.width);
+        return;
+    }
 
     bool pixelIsNULL = (pixel == NULL);
 
