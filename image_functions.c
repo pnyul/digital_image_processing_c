@@ -203,6 +203,9 @@ BMPImage *blur(BMPImage *original, double sigma) {
 
 void grayscale(BMPImage *image) {
 
+    if (image == NULL)
+        return;
+
     double gray;
 
     for (int i = 0; i < image->infoHeader.height; i++) {
