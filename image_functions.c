@@ -28,6 +28,9 @@ uint8_t calculate_pixel_value(uint8_t pixel_value, int value) {
 //handles - (down) and + (up) values
 void change_brightness(BMPImage *image, int value) {
 
+    if (image == NULL)
+        return;
+
     if (value == 0)
         return;
 
