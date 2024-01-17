@@ -3,6 +3,8 @@
 
 #include "image.h"
 
+int compare_double_values(double a, double b);
+
 void set_pixel(Pixel *pixel, uint8_t blue, uint8_t green, uint8_t red);
 
 uint8_t calculate_pixel_value(uint8_t pixel_value, int value);
