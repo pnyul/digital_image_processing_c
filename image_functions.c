@@ -223,6 +223,9 @@ void grayscale(BMPImage *image) {
 
 void generate_ascii(BMPImage *image, char *outputPath) {
 
+    if (image == NULL)
+        return;
+
     FILE *output = fopen(outputPath, "w");
 
     if (output == NULL) {
