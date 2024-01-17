@@ -228,7 +228,7 @@ BMPImage *blur(BMPImage *original, double sigma) {
     if (pixel == NULL)
         return NULL;
 
-    set_pixel(pixel, 0, 0, 0);
+    set_pixel(pixel, blurred->pixelData[0][0].blue, blurred->pixelData[0][0].green, blurred->pixelData[0][0].red);
 
     add_frame(blurred, kernelSize / 2, pixel);
 
