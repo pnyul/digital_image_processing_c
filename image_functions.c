@@ -53,6 +53,21 @@ void add_frame(BMPImage *image, int size, Pixel *pixel) {
     if (image == NULL)
         return;
 
+    bool pixelIsNULL = (pixel == NULL);
+
+    if (pixelIsNULL) {
+
+        pixel = (Pixel *) malloc(sizeof(Pixel));
+
+        if (pixel == NULL)
+            return;
+
+        pixel->blue = 0;
+        pixel->green = 0;
+        pixel->red = 0;
+
+    }
+
     for (int i = 0; i < size; i++) {
 
         for (int j = 0; j < image->infoHeader.height; j++) {
@@ -69,6 +84,11 @@ void add_frame(BMPImage *image, int size, Pixel *pixel) {
 
         }
 
+    }
+
+    if (pixelIsNULL) {
+        free(pixel);
+        pixel = NULL;
     }
 
 }
