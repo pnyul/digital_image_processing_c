@@ -4,8 +4,15 @@
 #include <math.h>
 #include <string.h>
 
+#define EPS 1e-9
 #define MIN_INTENSITY 0
 #define MAX_INTENSITY 255
+#define SIGMA_MIN 0.5
+#define SIGMA_MAX 3.0
+
+int compare_double_values(double a, double b) {
+    return fabs(a - b) < EPS ? 0 : (a < b ? -1 : 1);
+}
 
 void set_pixel(Pixel *pixel, uint8_t blue, uint8_t green, uint8_t red) {
     pixel->blue = blue;
@@ -83,6 +90,11 @@ double **gaussian_kernel(int size, double sigma) {
     if (size <= 0)
         return NULL;
 
+    if (compare_double_values(sigma, SIGMA_MIN) == -1 || compare_double_values(sigma, SIGMA_MAX) == 1) {
+        printf("Sigma value must be: [%0.1f, %0.1f]\n", SIGMA_MIN, SIGMA_MAX);
+        return NULL;
+    }
+
     double **kernel = (double **) malloc(size * sizeof(double *));
 
     for (int i = 0; i < size; i++) {
@@ -122,6 +134,11 @@ BMPImage *blur(BMPImage *original, double sigma) {
 
     if (original == NULL)
         return NULL;
+
+    if (compare_double_values(sigma, SIGMA_MIN) == -1 || compare_double_values(sigma, SIGMA_MAX) == 1) {
+        printf("Sigma value must be: [%0.1f, %0.1f]\n", SIGMA_MIN, SIGMA_MAX);
+        return NULL;
+    }
 
     BMPImage *blurred = copy_bmp_image(original);
 
