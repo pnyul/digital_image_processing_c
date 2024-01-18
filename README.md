@@ -1,4 +1,4 @@
-# BMP PROCESSING LIBRARY
+# BMP PROCESSING LIBRARY - C
 ## Handles BMP images with 24 bpp.
 
 * setting pixel value
