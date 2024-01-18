@@ -80,6 +80,9 @@ BMPImage *read_bmp_image(char *path) {
 
 void write_bmp_image(BMPImage *image, char *path) {
 
+    if (image == NULL)
+        return;
+    
     FILE *output = fopen(path, "wb");
 
     if (output == NULL) {
@@ -151,6 +154,9 @@ BMPImage *copy_bmp_image(BMPImage *orig) {
 }
 
 void free_bmp_image(BMPImage *image) {
+
+    if (image == NULL)
+        return;
 
     for (int i = 0; i < image->infoHeader.height; i++)
         free(image->pixelData[i]);
