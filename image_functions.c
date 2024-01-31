@@ -375,3 +375,15 @@ BMPImage *rotate(BMPImage *image) {
 
 }
 
+//Laplacian filter
+BMPImage *edge_detection(BMPImage *image) {
+
+    if (image == NULL)
+        return NULL;
+
+//
+
+    return NULL;
+
+}
+
